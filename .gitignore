@@ -30,3 +30,6 @@ pnpm-debug.log*
 **/auxiliary.db-wal
 **/data.db-shm
 **/data.db-wal
+
+**/LICENSE.md
+**/*.exe
