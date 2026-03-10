@@ -6,14 +6,17 @@ const isHome = Astro.url.pathname === "/";
 ---
 
 <footer class="lg:px-48 absolute bottom-0 w-full bg-prim500">
-  <div class="lg:grid lg:grid-cols-2 lg:gap-5">
+  
     <a href="/" aria-label="Accueil">
       <div class="flex items-center gap-2 pt-4">
         <Logo />
-        <p class="font-body text-xl text-white font-bold">Jumelage</p>
+        <p class="font-body text-xl text-white font-bold py-8">Jumelage</p>
       </div>
     </a>
 
+    <button class="bg-acc200 font-title text-prim200 w-40 mx-auto block p-3 rounded-xl hover:text-acc200 hover:bg-prim200 transition ">Je m'inscris !</button>
+
+    <div class="lg:grid lg:grid-cols-2 lg:gap-5">
     <nav class={`lg:col-start-1 lg:mr-8 lg:relative lg:items-center py-8`}>
       <ul
         class="font-body text-base inset-0 text-prim300 relative z-10 *:transition *:ease-in-out max-lg:mt-24 max-lg:space-y-4 max-lg:text-2xl *:max-lg:translate-y-0 *:max-lg:opacity-100 *:max-lg:group-aria-hidden:-translate-y-6 *:max-lg:group-aria-hidden:opacity-0 space-y-6"
