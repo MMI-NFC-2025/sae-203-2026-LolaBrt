@@ -5,6 +5,12 @@ import "@fontsource/kanit/500.css";
 import "@fontsource/kanit/600.css";
 import "@fontsource/kanit/700.css";
 import "@fontsource-variable/sora";
+import Header from "../components/Header.astro";
+
+const { title, description } = Astro.props;
+const siteName = "Jumelage";
+const titleHead =
+  Astro.url.pathname === "/" ? siteName : `${title} — ${siteName}`;
 ---
 
 <!doctype html>
@@ -13,11 +19,16 @@ import "@fontsource-variable/sora";
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="MyWebSite" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro Basics</title>
+    <title>{titleHead}</title>
+    <meta name="description" content={description} />
   </head>
   <body>
+    <Header />
     <slot />
   </body>
 </html>

@@ -1,0 +1,53 @@
+---
+import "../styles/global.css";
+import { Image } from "astro:assets";
+import Logo from "../assets/logo.svg";
+
+const isHome = Astro.url.pathname === "/";
+---
+
+<header
+  class={`${
+    isHome ? "absolute top-0 left-0 w-full" : "relative"
+  } z-50 flex items-center justify-between p-4 bg-black/35 backdrop-blur-sm`}
+>
+  <a
+    class="relative z-20 origin-top-left transition-transform duration-300 ease-in-out group-has-aria-expanded/header:scale-150"
+    href="/"
+    aria-label="Accueil"
+  >
+    <div class="flex justify-align items-center gap-2">
+        <Logo /> 
+        <p class="font-body text-xl text-white font-bold">Jumelage</p>
+    </div>
+  </a>
+
+  <nav
+    id="menu"
+    class={`visible fixed inset-0 z-10 text-white lg:mr-8 lg:relative lg:flex lg:flex-1 lg:items-center lg:justify-end`}
+    aria-hidden="true"
+  >
+    <ul
+      class="font-body text-base font-bold relative z-11 *:transition *:ease-in-out max-lg:mt-24 max-lg:space-y-4 max-lg:text-2xl *:max-lg:translate-y-0 *:max-lg:opacity-100 *:max-lg:group-aria-hidden:-translate-y-6 *:max-lg:group-aria-hidden:opacity-0 lg:flex lg:gap-6"
+    >
+      <li class="delay-50">
+        <a href="/">Programme</a>
+      </li>
+      <li class="delay-100">
+        <a href="/projects">Nos artistes</a>
+      </li>
+      <li class="delay-150">
+        <a href="/about.html">4 scènes</a>
+      </li>
+      <li class="delay-150">
+        <a href="/about.html">Infos pratiques</a>
+      </li>
+      <li class="delay-150">
+        <a href="/about.html">À propos</a>
+      </li>
+      <li class="delay-200">
+        <a href="/contact.html">Contact</a>
+      </li>
+    </ul>
+  </nav>
+</header>

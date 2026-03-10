@@ -16,15 +16,15 @@
 
 @base {
     body {
-        @apply font-body text-base color-prim500;
+        @apply font-body text-base text-prim500;
     }
 
     details {
-        @apply font-body text-sm color-prim300;
+        @apply font-body text-sm text-prim300;
     }
 
     h1 {
-        @apply font-title text-6xl color-white font-semibold;
+        @apply font-title text-6xl text-white font-semibold;
     }
 
     h2 {
