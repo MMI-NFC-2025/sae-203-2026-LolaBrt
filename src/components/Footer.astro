@@ -1,0 +1,91 @@
+---
+import "../styles/global.css";
+import Logo from "../assets/logo.svg";
+
+const isHome = Astro.url.pathname === "/";
+---
+
+<footer class="lg:px-48 absolute bottom-0 w-full bg-prim500">
+  <div class="lg:grid lg:grid-cols-2 lg:gap-5">
+    <a href="/" aria-label="Accueil">
+      <div class="flex items-center gap-2 pt-4">
+        <Logo />
+        <p class="font-body text-xl text-white font-bold">Jumelage</p>
+      </div>
+    </a>
+
+    <nav class={`lg:col-start-1 lg:mr-8 lg:relative lg:items-center py-8`}>
+      <ul
+        class="font-body text-base inset-0 text-prim300 relative z-10 *:transition *:ease-in-out max-lg:mt-24 max-lg:space-y-4 max-lg:text-2xl *:max-lg:translate-y-0 *:max-lg:opacity-100 *:max-lg:group-aria-hidden:-translate-y-6 *:max-lg:group-aria-hidden:opacity-0 space-y-6"
+      >
+        <li>
+          <a class="hover:text-acc200" href="/Programme.astro">Programme</a>
+        </li>
+        <li>
+          <a class="hover:text-acc200" href="/artistes/">Nos artistes</a>
+        </li>
+        <li>
+          <a class="hover:text-acc200" href="/scenes/">4 scènes</a>
+        </li>
+        <li>
+          <a class="hover:text-acc200" href="/Infos.astro">Infos pratiques</a>
+        </li>
+        <li>
+          <a class="hover:text-acc200" href="/About.astro">À propos</a>
+        </li>
+        <li>
+          <a class="hover:text-acc200" href="/Contact.astro">Contact</a>
+        </li>
+      </ul>
+    </nav>
+
+    <nav class="lg:col-start-2 py-8">
+      <ul class="space-y-6">
+        <li>
+          <a href="/">
+            <img
+              src="../../public/img/socials_x.svg"
+              alt="Vers le réseau social nul X"
+            />
+          </a>
+        </li>
+        <li>
+          <a href="/">
+            <img src="../../public/img/socials_fb.svg" alt="Vers Facebook" />
+          </a>
+        </li>
+        <li>
+          <a href="/">
+            <img
+              src="../../public/img/socials_insta.svg"
+              alt="Vers Instagram"
+            />
+          </a>
+        </li>
+        <li>
+          <a href="/">
+            <img
+              src="../../public/img/socials_tiktok.svg"
+              alt="Vers le réseau social nul Tiktok"
+            />
+          </a>
+        </li>
+        <li>
+          <a href="/">
+            <img src="../../public/img/socials_yt.svg" alt="Vers YouTube" />
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <p class="font-body text-sm text-prim300 text-center py-4">
+    Mentions légales / Politique de confidentialité / CGU
+  </p>
+  <hr class="border-prim200 px-48 py-8" />
+
+  <p class="font-body text-sm text-prim300 text-center py-4">
+    JUMELAGE Festival 2026
+  </p>
+  <p class="font-body text-sm text-prim300 text-center pt-4 pb-10">© JUMELAGE</p>
+</footer>
