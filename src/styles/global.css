@@ -1,1 +1,41 @@
 @import "tailwindcss";
+
+@theme {
+    --font-title: 'Kanit', sans-serif;
+    --font-body: 'Sora Variable', sans-serif;
+
+    --color-acc100: oklch(65% 0.19 250);
+    --color-acc200: oklch(48% 0.15 255);
+    --color-acc300: oklch(28% 0.08 255);
+    --color-prim100: oklch(97.5% 0.01 0);
+    --color-prim200: oklch(96% 0 0);
+    --color-prim300: oklch(76% 0.01 250);
+    --color-prim400: oklch(40% 0.005 250);
+    --color-prim500: oklch(25% 0.008 250);
+}
+
+@base {
+    body {
+        @apply font-body text-base color-prim500;
+    }
+
+    details {
+        @apply font-body text-sm color-prim300;
+    }
+
+    h1 {
+        @apply font-title text-6xl color-white font-semibold;
+    }
+
+    h2 {
+        @apply font-title text-4xl font-semibold;
+    }
+
+    h3 {
+        @apply font-title text-3xl;
+    }
+
+    h4 {
+        @apply font-title text-base font-bold;
+    }
+}

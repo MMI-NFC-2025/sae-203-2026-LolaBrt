@@ -94,3 +94,8 @@ export async function Userauth(email, password) {
     return authData;
 }
 
+//*******************************************************************************/
+
+export async function getImageUrl(record, recordImage) {
+    return pb.files.getURL(record, recordImage);
+}
