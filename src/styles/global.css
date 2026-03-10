@@ -12,6 +12,8 @@
     --color-prim300: oklch(76% 0.01 250);
     --color-prim400: oklch(40% 0.005 250);
     --color-prim500: oklch(25% 0.008 250);
+
+    --my-grid: repeat(12, minmax(0, 64px));
 }
 
 @layer base {
@@ -33,5 +35,11 @@
 
     h4 {
         @apply font-title text-base font-bold;
+    }
+}
+
+@layer components {
+    .grille {
+        @apply px-6 lg:grid lg:grid-cols-(--my-grid) lg:justify-center lg:gap-12;
     }
 }

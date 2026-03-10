@@ -1,0 +1,41 @@
+---
+const title = Astro.props.title;
+const subtitle = Astro.props.subtitle;
+---
+
+<div>
+  <div>
+    {
+      title && (
+        <h1 class="font-title text-6xl text-prim100 font-semibold">{title}</h1>
+      )
+    }
+    {subtitle && <h3 class="font-title text-3xl text-prim100">{subtitle}</h3>}
+  </div>
+
+  <div>
+    <a
+      href="https://www.youtube.com/@CinemaTherapyShow"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <button class="border-prim100 flex items-center"
+        >BILLETTERIE  <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+        </button>
+    </a>
+  </div>
+
+  <div>
+    <slot name="image" />
+  </div>
+</div>
