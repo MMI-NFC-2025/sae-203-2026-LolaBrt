@@ -2,21 +2,56 @@
 import "../styles/global.css";
 import Logo from "../assets/logo.svg";
 
+import XIcon from "../assets/img/socials_x.svg";
+import FbIcon from "../assets/img/socials_fb.svg";
+import InstaIcon from "../assets/img/socials_insta.svg";
+import TiktokIcon from "../assets/img/socials_tiktok.svg";
+import YTIcon from "../assets/img/socials_yt.svg";
+
 const isHome = Astro.url.pathname === "/";
+const SocialLinks = [
+  {
+    href: "https://youtu.be/Aq5WXmQQooo?si=CeH_n8D_Oys8Mk6O",
+    Icon: XIcon,
+    label: "X",
+  },
+  {
+    href: "https://www.facebook.com/Lola.Nov.Art?locale=fr_FR",
+    Icon: FbIcon,
+    label: "Facebook",
+  },
+  {
+    href: "https://www.instagram.com/lola.nov.art/",
+    Icon: InstaIcon,
+    label: "Instagram",
+  },
+  {
+    href: "https://youtu.be/Aq5WXmQQooo?si=CeH_n8D_Oys8Mk6O",
+    Icon: TiktokIcon,
+    label: "Tiktok",
+  },
+  {
+    href: "https://youtu.be/Aq5WXmQQooo?si=CeH_n8D_Oys8Mk6O",
+    Icon: YTIcon,
+    label: "YouTube",
+  },
+];
 ---
 
 <footer class="lg:px-48 absolute bottom-0 w-full bg-prim500">
-  
-    <a href="/" aria-label="Accueil">
-      <div class="flex items-center gap-2 pt-4">
-        <Logo />
-        <p class="font-body text-xl text-white font-bold py-8">Jumelage</p>
-      </div>
-    </a>
+  <a href="/" aria-label="Accueil">
+    <div class="flex items-center gap-2 pt-4">
+      <Logo />
+      <p class="font-body text-xl text-white font-bold py-8">Jumelage</p>
+    </div>
+  </a>
 
-    <button class="bg-acc200 font-title text-prim200 w-40 mx-auto block p-3 rounded-xl hover:text-acc200 hover:bg-prim200 transition ">Je m'inscris !</button>
+  <button
+    class="bg-acc200 font-title text-prim200 w-40 mx-auto block p-3 rounded-xl hover:text-acc200 hover:bg-prim200 transition my-12"
+    >Je m'inscris !</button
+  >
 
-    <div class="lg:grid lg:grid-cols-2 lg:gap-5">
+  <div class="lg:grid lg:grid-cols-2 lg:gap-5">
     <nav class={`lg:col-start-1 lg:mr-8 lg:relative lg:items-center py-8`}>
       <ul
         class="font-body text-base inset-0 text-prim300 relative z-10 *:transition *:ease-in-out max-lg:mt-24 max-lg:space-y-4 max-lg:text-2xl *:max-lg:translate-y-0 *:max-lg:opacity-100 *:max-lg:group-aria-hidden:-translate-y-6 *:max-lg:group-aria-hidden:opacity-0 space-y-6"
@@ -44,40 +79,20 @@ const isHome = Astro.url.pathname === "/";
 
     <nav class="lg:col-start-2 py-8">
       <ul class="space-y-6">
-        <li>
-          <a href="/">
-            <img
-              src="../../public/img/socials_x.svg"
-              alt="Vers le réseau social nul X"
-            />
-          </a>
-        </li>
-        <li>
-          <a href="/">
-            <img src="../../public/img/socials_fb.svg" alt="Vers Facebook" />
-          </a>
-        </li>
-        <li>
-          <a href="/">
-            <img
-              src="../../public/img/socials_insta.svg"
-              alt="Vers Instagram"
-            />
-          </a>
-        </li>
-        <li>
-          <a href="/">
-            <img
-              src="../../public/img/socials_tiktok.svg"
-              alt="Vers le réseau social nul Tiktok"
-            />
-          </a>
-        </li>
-        <li>
-          <a href="/">
-            <img src="../../public/img/socials_yt.svg" alt="Vers YouTube" />
-          </a>
-        </li>
+        {
+          SocialLinks.map(({ href, label, Icon }) => (
+            <li>
+              <a
+                href={href}
+                aria-label={label}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Icon />
+              </a>
+            </li>
+          ))
+        }
       </ul>
     </nav>
   </div>
@@ -90,5 +105,7 @@ const isHome = Astro.url.pathname === "/";
   <p class="font-body text-sm text-prim300 text-center py-4">
     JUMELAGE Festival 2026
   </p>
-  <p class="font-body text-sm text-prim300 text-center pt-4 pb-10">© JUMELAGE</p>
+  <p class="font-body text-sm text-prim300 text-center pt-4 pb-10">
+    © JUMELAGE
+  </p>
 </footer>
