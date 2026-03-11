@@ -8,7 +8,7 @@ const isHome = Astro.url.pathname === "/";
 <header
   class={`${
     isHome ? "absolute top-0 left-0 w-full" : "relative"
-  } z-50 flex items-center justify-between p-4 bg-black/35 backdrop-blur-sm`}
+  } z-50 flex items-center justify-between p-4 bg-black/35 backdrop-blur-sm fixed`}
 >
   <a class="relative z-20 origin-top-left" href="/" aria-label="Accueil">
     <div class="flex items-center gap-2">
@@ -25,22 +25,22 @@ const isHome = Astro.url.pathname === "/";
       class="font-body text-base font-bold relative z-11 *:transition *:ease-in-out max-lg:mt-24 max-lg:space-y-4 max-lg:text-2xl *:max-lg:translate-y-0 *:max-lg:opacity-100 *:max-lg:group-aria-hidden:-translate-y-6 *:max-lg:group-aria-hidden:opacity-0 lg:flex lg:gap-6"
     >
       <li>
-        <a class="hover:text-acc200" href="/Programme.astro">Programme</a>
+        <a class="hover:text-acc100" href="/Programme.astro">Programme</a>
       </li>
       <li>
-        <a class="hover:text-acc200" href="/artistes/">Nos artistes</a>
+        <a class="hover:text-acc100" href="/artistes/">Nos artistes</a>
       </li>
       <li>
-        <a class="hover:text-acc200" href="/scenes/">4 scènes</a>
+        <a class="hover:text-acc100" href="/scenes/">4 scènes</a>
       </li>
       <li>
-        <a class="hover:text-acc200" href="/Infos.astro">Infos pratiques</a>
+        <a class="hover:text-acc100" href="/Infos.astro">Infos pratiques</a>
       </li>
       <li>
-        <a class="hover:text-acc200" href="/About.astro">À propos</a>
+        <a class="hover:text-acc100" href="/About.astro">À propos</a>
       </li>
       <li>
-        <a class="hover:text-acc200" href="/Contact.astro">Contact</a>
+        <a class="hover:text-acc100" href="/Contact.astro">Contact</a>
       </li>
     </ul>
   </nav>

@@ -5,18 +5,46 @@ const artiste = Astro.props.artiste;
 ---
 
 <div
-  class="offre relative grid-cols-2 bg-white rounded-lg p-4 m-4 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all cursor-pointer"
+  class="offre relative m-4 bg-white rounded-lg shadow-md hover:shadow-lg hover:-translate-y-1 transition-all cursor-pointer overflow-hidden"
 >
   <a
     class="absolute inset-0 z-0"
     href={`/artistes/${artiste.id}`}
     aria-label={`Voir plus sur ${artiste.nom_artiste}`}></a>
 
-  <div>
-    <PbImage record={artiste} recordImage={artiste.img_main_artiste[0]} />
+  <div class="relative w-full overflow-hidden bg-prim200 max-h-48">
+    <PbImage record={artiste} recordImage={artiste.img_main_artiste} />
   </div>
 
   <div>
-    <strong class="text-blue-600 text-2xl"> {artiste.nom_artiste}</strong>
+    <p class="text-prim500 font-body font-bold text-2xl ml-4 mt-4">
+      {artiste.nom_artiste}
+    </p>
+  </div>
+
+  <div>
+    <p class="font-body text-prim300 ml-4">{artiste.show_artiste}</p>
+  </div>
+
+  <div class="mt-4 pb-5">
+    <span
+      class="inline-flex items-center gap-4 bg-acc200 pl-4 py-2 font-title text-lg text-prim100"
+    >
+      En savoir plus
+      <span class="grid h-12 w-10 place-items-center">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="3"
+          aria-hidden="true"
+        >
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </span>
+    </span>
   </div>
 </div>

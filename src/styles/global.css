@@ -17,7 +17,7 @@
 }
 
 @layer base {
-    body {
+    p {
         @apply font-body text-base text-prim500;
     }
 

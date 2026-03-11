@@ -1,41 +1,63 @@
 ---
-const title = Astro.props.title;
-const subtitle = Astro.props.subtitle;
+const { HomeTitle, subtitle, title, showButton = true } = Astro.props;
 ---
 
-<div>
-  <div>
+<div class="relative isolate overflow-hidden h-screen pt-60">
+  <div class="z-0 absolute inset-0">
+    <slot name="image" />
+  </div>
+  <div
+    class="z-0 absolute inset-0 bg-acc300/15 mix-blend-multiply">
+  </div>
+    <div
+    class="relative z-10"
+  >
     {
-      title && (
-        <h1 class="font-title text-6xl text-prim100 font-semibold">{title}</h1>
+      HomeTitle && (
+        <h1 class="font-title text-6xl text-prim100 font-semibold text-center my-4">
+          {HomeTitle}
+        </h1>
       )
     }
-    {subtitle && <h3 class="font-title text-3xl text-prim100">{subtitle}</h3>}
-  </div>
+    {
+      subtitle && (
+        <h3 class="font-title text-3xl font-bold text-prim100 text-center mb-8">
+          {subtitle}
+        </h3>
+      )
+    }
 
-  <div>
-    <a
-      href="https://www.youtube.com/@CinemaTherapyShow"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <button class="border-prim100 flex items-center"
-        >BILLETTERIE  <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
+    {
+      showButton && (
+        <a
+          href="https://www.youtube.com/@CinemaTherapyShow"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex w-fit mx-auto items-center gap-2 border-3 border-prim100 text-prim100 px-4 py-2 font-title font-semibold hover:bg-prim100 hover:text-acc100 transition"
         >
-          <polyline points="9 18 15 12 9 6"></polyline>
-        </svg>
-        </button>
-    </a>
-  </div>
+          BILLETTERIE
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="3"
+            aria-hidden="true"
+          >
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        </a>
+      )
+    }
 
-  <div>
-    <slot name="image" />
+    {
+      title && (
+        <h1 class="font-title text-6xl text-prim100 font-semibold my-4">
+          {title}
+        </h1>
+      )
+    }
   </div>
 </div>

@@ -1,8 +1,40 @@
 ---
+import { Picture } from "astro:assets";
+
 import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import CardArtistes from "../components/CardArtistes.astro";
+import imgHero from "../assets/img/hero_home.webp";
+
+import { allArtists } from "../../backend/backend.mjs";
+
+let artist = await allArtists();
 ---
 
-<Layout
-  title="Accueil"
-  description="Site du festival JUMELAGE"
-/>
+<Layout title="Accueil" description="Site du festival JUMELAGE">
+  <Hero
+    HomeTitle="JUMELAGE ÉDITION 2026"
+    subtitle="28 AOÛT - 30 AOÛT"
+    showButton={true}
+  >
+    <Picture
+      slot="image"
+      src={imgHero}
+      alt="festival"
+      layout="full-width"
+      pictureAttributes={{ class: "object-cover " }}
+    />
+  </Hero>
+
+  <p class="mx-70 mt-20 mb-10 text-prim500">
+    Le Festival Jumelage célèbre les rencontres entre cultures et territoires.
+    Une édition conviviale, accessible à tous, où l’esprit local prend vie à
+    travers des animations, des découvertes et des échanges uniques.
+  </p>
+
+  <h3 class="text-center text-acc300">Au rendez-vous de cette édition 2026</h3>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 py-4 my-10 bg-prim200">
+    {artist.map((artist) => <CardArtistes artiste={artist} />)}
+  </div>
+</Layout>
