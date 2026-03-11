@@ -2,16 +2,22 @@
 import PbImage from "./PbImage.astro";
 
 const artiste = Astro.props.artiste;
+const rawDate = String(artiste.show_artiste || "");
+const datePart = rawDate.slice(0, 10); // ex: 2026-08-30
+
+const showLabel = datePart
+  ? new Intl.DateTimeFormat("fr-FR", {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      timeZone: "UTC",
+    }).format(new Date(datePart + "T12:00:00Z"))
+  : "";
 ---
 
 <div
-  class="offre relative m-4 bg-white rounded-lg shadow-md hover:shadow-lg hover:-translate-y-1 transition-all cursor-pointer overflow-hidden"
+  class="offre relative m-4 bg-white rounded-lg shadow-md hover:shadow-lg hover:-translate-y-1 transition-all overflow-hidden"
 >
-  <a
-    class="absolute inset-0 z-0"
-    href={`/artistes/${artiste.id}`}
-    aria-label={`Voir plus sur ${artiste.nom_artiste}`}></a>
-
   <div class="relative w-full overflow-hidden bg-prim200 max-h-48">
     <PbImage record={artiste} recordImage={artiste.img_main_artiste} />
   </div>
@@ -23,11 +29,13 @@ const artiste = Astro.props.artiste;
   </div>
 
   <div>
-    <p class="font-body text-prim300 ml-4">{artiste.show_artiste}</p>
+    <p class="font-body text-prim300 ml-4">{showLabel}</p>
   </div>
 
   <div class="mt-4 pb-5">
-    <span
+    <a
+      href={`/artistes/${artiste.id}`}
+      aria-label={`Voir plus sur ${artiste.nom_artiste}`}
       class="inline-flex items-center gap-4 bg-acc200 pl-4 py-2 font-title text-lg text-prim100"
     >
       En savoir plus
@@ -45,6 +53,6 @@ const artiste = Astro.props.artiste;
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
       </span>
-    </span>
+    </a>
   </div>
 </div>

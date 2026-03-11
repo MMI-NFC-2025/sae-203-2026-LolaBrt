@@ -1,0 +1,16 @@
+---
+const id = Astro.params.id;
+
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/Hero.astro";
+import {oneArtisteID} from "../../../backend/backend.mjs"
+
+const artiste = await oneArtisteID(id);
+---
+
+<Layout title={artiste.nom_artiste} description={`Découvrez ${artiste.nom_artiste}.`}>
+    <Hero 
+    showButton={false}
+    title={artiste.nom_artiste}
+
+</Layout>
