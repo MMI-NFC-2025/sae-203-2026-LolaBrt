@@ -5,6 +5,14 @@ import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
 import CardArtistes from "../components/CardArtistes.astro";
 import imgHero from "../assets/img/hero_home.webp";
+import heroScenes from "../assets/img/hero_4scene.webp";
+import heroProgramme from "../assets/img/hero_programme.webp";
+import heroAbout from "../assets/img/hero_apropos.webp";
+import heroInfos from "../assets/img/hero_infos_pratiques.webp";
+import partenaire1 from "../assets/img/partenaire_1.webp";
+import partenaire2 from "../assets/img/partenaire_2.webp";
+import partenaire3 from "../assets/img/partenaire_3.webp";
+import partenaire4 from "../assets/img/partenaire_4.webp";
 
 import { allArtistsDate } from "../../backend/backend.mjs";
 
@@ -35,8 +43,250 @@ let artist = await allArtistsDate();
   <h3 class="text-center text-acc300">Au rendez-vous de cette édition 2026</h3>
 
   <div
-    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 py-4 my-10 bg-prim200"
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 py-4 mt-10 bg-prim200"
   >
     {artist.map((artist) => <CardArtistes artiste={artist} />)}
   </div>
+
+  <section class="bg-acc100 py-15">
+    <h3 class="text-prim100 text-center mb-5">Et bien d’autres encore !</h3>
+    <a
+      href="/artistes"
+      class="flex w-fit mx-auto items-center gap-2 border-3 border-prim100 text-prim100 px-4 py-2 font-title font-semibold hover:bg-prim100 hover:text-acc100 transition"
+    >
+      EN SAVOIR PLUS
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="3"
+        aria-hidden="true"
+      >
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </a>
+  </section>
+
+  <section class="bg-prim500 py-15 mx-8">
+    <ul class="grid grid-cols-1 md:grid-cols-3 gap-4 px-6 list-none">
+      <li class="border-l-2 border-prim400 pl-4">
+        <h3 class="text-prim100">Accessibilité</h3>
+        <p class="text-prim100">
+          Le Festival Jumelage s’engage à accueillir tous les publics. Nous
+          veillons à proposer des activités ouvertes à chacun, dans un cadre
+          inclusif et facile d’accès.
+        </p>
+      </li>
+
+      <li class="border-l-2 border-prim400 pl-4">
+        <h3 class="text-prim100">Convivialité</h3>
+        <p class="text-prim100">
+          L’esprit du festival repose sur la rencontre et le partage. Nous
+          créons un environnement chaleureux où habitants, visiteurs et
+          partenaires peuvent échanger librement.
+        </p>
+      </li>
+
+      <li class="border-l-2 border-prim400 pl-4">
+        <h3 class="text-prim100">Esprit local</h3>
+        <p class="text-prim100">
+          Le festival met à l’honneur les richesses du territoire. Cette édition
+          valorise les traditions, les artisans, les artistes et les initiatives
+          locales pour renforcer le lien entre les communautés jumelées.
+        </p>
+      </li>
+    </ul>
+  </section>
+
+  <section class="my-15">
+    <ul class="list-none m-0 p-0">
+      <li class="w-full max-w-xl mx-auto overflow-hidden mb-15">
+        <img
+          src={heroScenes.src}
+          alt="Scènes du festival"
+          class="w-full aspect-3/1 object-cover"
+          loading="lazy"
+        />
+
+        <div class="pt-4 pb-4 text-left">
+          <p>
+            Découvrez toutes nos scènes et leurs infos essentielles pour ne rien
+            manquer des temps forts du Festival Jumelage.
+          </p>
+        </div>
+
+        <a
+          href="/scenes/index.astro"
+          class="inline-flex items-center gap-4 bg-acc200 pl-4 py-2 font-title text-lg text-prim100"
+        >
+          En savoir plus
+          <span class="ml-4 grid h-9 w-9 place-items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              aria-hidden="true"
+            >
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </span>
+        </a>
+      </li>
+      <li class="w-full max-w-xl mx-auto overflow-hidden mb-15">
+        <img
+          src={heroProgramme.src}
+          alt="Programme du festival"
+          class="w-full aspect-3/1 object-cover"
+          loading="lazy"
+        />
+
+        <div class="pt-4 pb-4 text-left">
+          <p>
+            Explorez l’ensemble de notre programmation et retrouvez toutes les
+            infos clés pour profiter pleinement des temps forts du Festival
+            Jumelage.
+          </p>
+        </div>
+
+        <a
+          href="/programmation/index.astro"
+          class="inline-flex items-center gap-4 bg-acc200 pl-4 py-2 font-title text-lg text-prim100"
+        >
+          En savoir plus
+          <span class="ml-4 grid h-9 w-9 place-items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              aria-hidden="true"
+            >
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </span>
+        </a>
+      </li>
+      <li class="w-full max-w-xl mx-auto overflow-hidden mb-15">
+        <img
+          src={heroInfos.src}
+          alt="Infos pratiques du festival"
+          class="w-full aspect-3/1 object-cover"
+          loading="lazy"
+        />
+
+        <div class="pt-4 pb-4 text-left">
+          <p>
+            Retrouvez toutes les informations essentielles pour préparer votre
+            visite et profiter pleinement du Festival Jumelage
+          </p>
+        </div>
+
+        <a
+          href="/Infos.astro"
+          class="inline-flex items-center gap-4 bg-acc200 pl-4 py-2 font-title text-lg text-prim100"
+        >
+          En savoir plus
+          <span class="ml-4 grid h-9 w-9 place-items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              aria-hidden="true"
+            >
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </span>
+        </a>
+      </li>
+      <li class="w-full max-w-xl mx-auto overflow-hidden mb-15">
+        <img
+          src={heroAbout.src}
+          alt="À propos du festival"
+          class="w-full aspect-3/1 object-cover"
+          loading="lazy"
+        />
+
+        <div class="pt-4 pb-4 text-left">
+          <p>
+            Découvrez l’histoire, les valeurs et la vision du Festival Jumelage,
+            et rencontrez l’équipe qui rend cet événement unique.
+          </p>
+        </div>
+
+        <a
+          href="/About.astro"
+          class="inline-flex items-center gap-4 bg-acc200 pl-4 py-2 font-title text-lg text-prim100"
+        >
+          En savoir plus
+          <span class="ml-4 grid h-9 w-9 place-items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              aria-hidden="true"
+            >
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </span>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="grille">
+    <h2 class="col-start-2 col-span-6">Ils font vivre le festival</h2>
+    <ul class="flex raw-start-2 col-start-4 mb-8">
+      <li>
+        <div class="w-40">
+          <img
+            src={partenaire1.src}
+            alt="Partenaire"
+            class="block w-full h-auto object-contain"
+          />
+        </div>
+      </li><li>
+        <div class="w-40">
+          <img
+            src={partenaire2.src}
+            alt="Partenaire"
+            class="block w-full h-auto object-contain"
+          />
+        </div>
+      </li><li>
+        <div class="w-40">
+          <img
+            src={partenaire3.src}
+            alt="Partenaire"
+            class="block w-full h-auto object-contain"
+          />
+        </div>
+      </li><li>
+        <div class="w-40">
+          <img
+            src={partenaire4.src}
+            alt="Partenaire"
+            class="block w-full h-auto object-contain"
+          />
+        </div>
+      </li>
+    </ul>
+  </section>
 </Layout>

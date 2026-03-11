@@ -32,57 +32,32 @@ export async function oneSceneID(id) {
     return records; 
 }
 
-export async function artistesParScene(sceneId) { 
-    const scene = await pb.collection('SCENE').getOne(sceneId, {
-        expand: 'performe'
-    });
-    
-    let artistes = scene.expand?.performe || [];
-    if (!Array.isArray(artistes)) {
-        artistes = [artistes];
-    }
-    
-    artistes.sort((a, b) => new Date(a.show_artiste) - new Date(b.show_artiste));
-    
-    return artistes;
+export async function artistesParScene(sceneId) {
+  const artistes = await pb.collection("ARTISTE").getFullList({
+    filter: `performe = "${sceneId}"`,
+    sort: "show_artiste",
+  });
+  return artistes;
 }
 
-export async function artistesParNomScene(nomScene) { 
-    const scenes = await pb.collection('SCENE').getFullList({
-        filter: `nom_scene ~ "${nomScene}"`, 
-        expand: 'performe'
-    });
-    
-    if (scenes.length === 0) {
-        throw new Error(`Scène "${nomScene}" introuvable`);
-    }
-    
-    let artistes = scenes[0].expand?.performe || [];
-    
-    if (!Array.isArray(artistes)) {
-        artistes = [artistes];
-    }
-    
-    artistes.sort((a, b) => new Date(a.show_artiste) - new Date(b.show_artiste));
-    
-    return artistes;
+export async function artistesParNomScene(nomScene) {
+  const scenes = await pb.collection("SCENE").getFullList({
+    filter: `nom_scene ~ "${nomScene}"`,
+  });
+
+  if (scenes.length === 0) {
+    throw new Error(`Scène "${nomScene}" introuvable`);
+  }
+
+  return artistesParScene(scenes[0].id);
 }
 
 export async function addNewArtistToScene(artistData, sceneId) {
-
-    const artiste = await pb.collection('ARTISTE').create(artistData);
-    
-    const scene = await pb.collection('SCENE').getOne(sceneId);
-    
-    const performe = Array.isArray(scene.performe) 
-        ? [...scene.performe, artiste.id] 
-        : [artiste.id];
-    
-    await pb.collection('SCENE').update(sceneId, {
-        performe: performe
-    });
-    
-    return artiste;
+  const artiste = await pb.collection("ARTISTE").create({
+    ...artistData,
+    performe: sceneId,
+  });
+  return artiste;
 }
 
 export async function addNewUser(newUser) {
