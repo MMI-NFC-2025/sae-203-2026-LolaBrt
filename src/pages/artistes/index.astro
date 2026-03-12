@@ -1,18 +1,25 @@
 ---
-import Header from "../../components/Header.astro";
 import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/Hero.astro";
 import CardArtistes from "../../components/CardArtistes.astro";
 import { allArtistsDate } from "../../../backend/backend.mjs";
-
+import { Picture } from "astro:assets";
+import imgHero from "../../assets/img/hero_artistes.webp";
 let artistes = await allArtistsDate();
 ---
 
 <Layout titre="Artistes">
-  <h1 class="text-6xl font-bold text-blue-500 text-center mt-8 mb-8">
-    Artistes
-  </h1>
+  <Hero showButton={false} title="Nos artistes">
+    <Picture
+      slot="image"
+      src={imgHero}
+      alt="guitarre"
+      layout="full-width"
+      pictureAttributes={{ class: "object-cover " }}
+    />
+  </Hero>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-10 px-8">
     {artistes.map((artiste) => <CardArtistes artiste={artiste} />)}
   </div>
 </Layout>

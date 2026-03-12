@@ -1,16 +1,29 @@
 ---
-const id = Astro.params.id;
-
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
-import {oneArtisteID} from "../../../backend/backend.mjs"
+import { oneArtisteID } from "../../../backend/backend.mjs";
+import PbImage from "../../components/PbImage.astro";
 
+const id = Astro.params.id;
 const artiste = await oneArtisteID(id);
+if (!artiste) {
+  console.error(`Artiste with id ${id} not found`);
+  return Astro.redirect("/artistes");
+}
 ---
 
-<Layout title={artiste.nom_artiste} description={`Découvrez ${artiste.nom_artiste}.`}>
-    <Hero 
-    showButton={false}
-    title={artiste.nom_artiste}
-
+<Layout
+  title={artiste.nom_artiste}
+  description={`Découvrez ${artiste.nom_artiste}.`}
+>
+  <Hero showButton={false}
+    >
+    <PbImage
+      slot="image"
+      record={artiste}
+      recordImage={artiste.img_main_artiste}
+      layout="full-width"
+      pictureAttributes={{ class: "object-cover " }}
+    />
+  </Hero>
 </Layout>

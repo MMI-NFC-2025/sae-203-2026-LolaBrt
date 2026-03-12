@@ -1,0 +1,110 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/Hero.astro";
+import { Picture } from "astro:assets";
+import imgHero from "../../assets/img/hero_programme.webp";
+import CardArtistes from "../../components/CardArtistes.astro";
+import { allArtistsDate } from "../../../backend/backend.mjs";
+
+let artist = await allArtistsDate();
+---
+
+<Layout title={`Programme`}>
+  <Hero title="Programme" showButton={false}>
+    <Picture
+      slot="image"
+      src={imgHero}
+      alt="guitarre"
+      layout="full-width"
+      pictureAttributes={{ class: "object-cover " }}
+    />
+  </Hero>
+
+  <div class="grille">
+    <h3 class="col-span-2 mt-8">Filtrer par :</h3>
+
+    <p class="row-start-2 col-span-2">Genre :</p>
+    <a
+      class="row-start-2 col-start-3 col-span-3 inline-flex items-center justify-center rounded-md bg-acc100 px-3 py-2 font-title text-prim100 hover:bg-acc300 transition mx-10"
+      href="/programmation/genre/Folk%20a"
+    >
+      Folk a
+    </a>
+
+    <a
+      class="row-start-2 col-start-5 col-span-3 inline-flex items-center justify-center rounded-md bg-acc100 px-2 py-2 font-title text-prim100 hover:bg-acc300 transition mx-10"
+      href="/programmation/genre/Folk%20b"
+    >
+      Folk b
+    </a>
+
+    <p class="row-start-3 col-span-2">Date :</p>
+    <a
+      class="row-start-3 col-start-3 col-span-3 inline-flex items-center justify-center rounded-md bg-acc100 px-4 py-2 font-title text-prim100 hover:bg-acc300 transition mx-10"
+      href="/programmation/date/2026-08-28"
+    >
+      Vendredi 28
+    </a>
+
+    <a
+      class="row-start-3 col-start-5 col-span-3 inline-flex items-center justify-center rounded-md bg-acc100 px-4 py-2 font-title text-prim100 hover:bg-acc300 transition mx-10"
+      href="/programmation/date/2026-08-29"
+    >
+      Samedi 29
+    </a>
+    <a
+      class="row-start-3 col-start-7 col-span-3 inline-flex items-center justify-center rounded-md bg-acc100 px-4 py-2 font-title text-prim100 hover:bg-acc300 transition mx-10"
+      href="/programmation/date/2026-08-30"
+    >
+      Dimanche 30
+    </a>
+
+    <p class="row-start-4 col-span-2">Scène :</p>
+    <a
+      class="row-start-4 col-start-3 col-span-3 inline-flex items-center justify-center rounded-md bg-acc100 px-4 py-2 font-title text-prim100 hover:bg-acc300 transition mx-10"
+      href="/programmation/scene/Scène%201"
+    >
+      Scène 1
+    </a>
+
+    <a
+      class="row-start-4 col-start-5 col-span-3 inline-flex items-center justify-center rounded-md bg-acc100 px-4 py-2 font-title text-prim100 hover:bg-acc300 transition mx-10"
+      href="/programmation/scene/Scène%202"
+    >
+      Scène 2
+    </a>
+    <a
+      class="row-start-4 col-start-7 col-span-3 inline-flex items-center justify-center rounded-md bg-acc100 px-4 py-2 font-title text-prim100 hover:bg-acc300 transition mx-10"
+      href="/programmation/scene/Scène%203"
+    >
+      Scène 3
+    </a>
+    <a
+      class="row-start-4 col-start-9 col-span-3 inline-flex items-center justify-center rounded-md bg-acc100 px-4 py-2 font-title text-prim100 hover:bg-acc300 transition mx-10"
+      href="/programmation/scene/Scène%204"
+    >
+      Scène 4
+    </a>
+  </div>
+
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 py-4 mt-10 bg-prim200"
+  >
+    {artist.map((artist) => <CardArtistes artiste={artist} />)}
+  </div>
+
+  <section class="grille bg-acc100 py-15">
+    <p class="font-bold text-prim100 col-span-10">
+      Retrouvez le programme complet du festival, avec l’ensemble des artistes,
+      horaires et scènes.<br /> Téléchargez la version PDF pour consulter facilement
+      toute la programmation où que vous soyez.
+    </p>
+    <a
+      class="col-span-3 inline-flex w-fit items-center border-2 border-prim100 text-prim100 px-4 py-2 font-title hover:bg-prim100 hover:text-acc100 transition"
+      href="/programme.pdf"
+      download
+    >
+      Télécharger le programme (PDF)
+    </a>
+  </section>
+</Layout>
