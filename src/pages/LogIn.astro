@@ -1,0 +1,92 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import { Picture } from "astro:assets";
+import HeroImg from "../assets/img/hero_login.webp";
+import { Userauth } from "../../backend/backend.mjs";
+
+let message = "";
+let error = "";
+
+if (Astro.request.method === "POST") {
+  const data = await Astro.request.formData();
+
+  const email = String(data.get("email") || "");
+  const password = String(data.get("password") || "");
+
+  try {
+    await Userauth(email, password);
+    message = "Connexion réussie.";
+    // ensuite tu pourras rediriger vers l'accueil
+    // return Astro.redirect("/");
+  } catch (e) {
+    error = "Email ou mot de passe incorrect.";
+  }
+}
+---
+
+<Layout title="Connexion">
+  <Hero title="Connexion" showButton={false}>
+    <p slot="subtitle" class="text-prim500">
+      Connecte-toi pour accéder à ton espace personnel et profiter pleinement du
+      festival !
+    </p>
+    <Picture
+      slot="image"
+      src={HeroImg}
+      alt="festival"
+      layout="full-width"
+      pictureAttributes={{ class: "object-cover " }}
+    />
+  </Hero>
+
+  <form method="POST" class="space-y-4 mx-50 my-30">
+    <div>
+      <label for="email" class="block font-body text-sm text-prim500 mb-1">
+        Email
+      </label>
+      <input
+        id="email"
+        type="email"
+        name="email"
+        placeholder="exemple@mail.com"
+        required
+        class="w-full rounded-md border border-prim200 px-3 py-2 outline-none focus:ring-2 focus:ring-acc200"
+      />
+    </div>
+    <div>
+      <label for="password" class="block font-body text-sm text-prim500 mb-1">
+        Mot de passe
+      </label>
+      <input
+        id="password"
+        type="password"
+        name="password"
+        placeholder="Minimum 8 caractères"
+        required
+        class="w-full rounded-md border border-prim200 px-3 py-2 outline-none focus:ring-2 focus:ring-acc200"
+      />
+    </div>
+    <button
+      type="submit"
+      class="w-40 mt-2 mx-auto block bg-acc100 text-prim100 font-title py-3 rounded-md hover:bg-prim500 hover:text-acc100 transition"
+    >
+      Je me connecte
+    </button>
+  </form>
+
+  {
+    message && (
+      <p class="mt-4 text-sm text-green-700 bg-green-50 p-2 rounded mx-50">
+        {message}
+      </p>
+    )
+  }
+  {
+    error && (
+      <p class="mt-4 text-sm text-red-700 bg-red-50 p-2 rounded mx-50">
+        {error}
+      </p>
+    )
+  }
+</Layout>

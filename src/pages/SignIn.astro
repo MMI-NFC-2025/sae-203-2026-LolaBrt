@@ -1,0 +1,117 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import { addNewUser } from "../../backend/backend.mjs";
+import { Picture } from "astro:assets";
+import HeroImg from "../assets/img/hero_signin.webp";
+
+let message = "";
+let error = "";
+
+if (Astro.request.method === "POST") {
+  const data = await Astro.request.formData();
+
+  const email = String(data.get("email") || "");
+  const password = String(data.get("password") || "");
+  const passwordConfirm = String(data.get("passwordConfirm") || "");
+
+  try {
+    await addNewUser({
+      email,
+      password,
+      passwordConfirm,
+    });
+
+    message = "Inscription réussie. Tu peux maintenant te connecter.";
+  } catch (e) {
+    error = "Inscription impossible. Vérifie les champs.";
+  }
+}
+---
+
+<Layout title="Inscription">
+  <Hero title="Inscription" showButton={false}>
+    <p slot="subtitle" class="text-prim500">
+      Crée ton compte pour profiter pleinement du festival !
+    </p>
+    <Picture
+      slot="image"
+      src={HeroImg}
+      alt="festival"
+      layout="full-width"
+      pictureAttributes={{ class: "object-cover " }}
+    />
+  </Hero>
+
+  <form method="POST" class="space-y-4 mx-50 my-30">
+    <div>
+      <label for="email" class="block font-body text-sm text-prim500 mb-1">
+        Email
+      </label>
+      <input
+        id="email"
+        type="email"
+        name="email"
+        placeholder="exemple@mail.com"
+        required
+        class="w-full rounded-md border border-prim200 px-3 py-2 outline-none focus:ring-2 focus:ring-acc200"
+      />
+    </div>
+
+    <div>
+      <label for="password" class="block font-body text-sm text-prim500 mb-1">
+        Mot de passe
+      </label>
+      <input
+        id="password"
+        type="password"
+        name="password"
+        placeholder="Minimum 8 caractères"
+        required
+        class="w-full rounded-md border border-prim200 px-3 py-2 outline-none focus:ring-2 focus:ring-acc200"
+      />
+    </div>
+
+    <div>
+      <label
+        for="passwordConfirm"
+        class="block font-body text-sm text-prim500 mb-1"
+      >
+        Confirmer le mot de passe
+      </label>
+      <input
+        id="passwordConfirm"
+        type="password"
+        name="passwordConfirm"
+        placeholder="Répète ton mot de passe"
+        required
+        class="w-full rounded-md border border-prim200 px-3 py-2 outline-none focus:ring-2 focus:ring-acc200"
+      />
+    </div>
+
+    <button
+      type="submit"
+      class="w-30 mt-2 mx-auto block bg-acc100 text-prim100 font-title py-3 rounded-md hover:bg-prim500 hover:text-acc100 transition"
+    >
+      Je m'inscris
+    </button>
+  </form>
+
+  {
+    message && (
+      <p class="mt-4 text-sm text-green-700 bg-green-50 p-2 rounded">
+        {message}
+      </p>
+    )
+  }
+  {
+    error && (
+      <p class="mt-4 text-sm text-red-700 bg-red-50 p-2 rounded">{error}</p>
+    )
+  }
+
+  <p class="mt-6 text-sm text-prim400 text-center my-4">
+    Déjà un compte ?
+    <a href="/LogIn" class="text-acc200 hover:underline">Se connecter</a>
+  </p>
+</Layout>
