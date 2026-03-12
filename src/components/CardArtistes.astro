@@ -3,7 +3,7 @@ import PbImage from "./PbImage.astro";
 
 const artiste = Astro.props.artiste;
 const rawDate = String(artiste.show_artiste || "");
-const datePart = rawDate.slice(0, 10); // ex: 2026-08-30
+const datePart = rawDate.slice(0, 10); 
 
 const showLabel = datePart
   ? new Intl.DateTimeFormat("fr-FR", {
@@ -16,7 +16,7 @@ const showLabel = datePart
 ---
 
 <div
-  class="offre relative m-4 bg-white rounded-lg shadow-md hover:shadow-lg hover:-translate-y-1 transition-all overflow-hidden"
+  class="relative m-4 bg-white rounded-lg shadow-md hover:shadow-lg hover:-translate-y-1 transition-all overflow-hidden"
 >
   <div class="relative w-full overflow-hidden bg-prim200 max-h-48">
     <PbImage record={artiste} recordImage={artiste.img_main_artiste} />

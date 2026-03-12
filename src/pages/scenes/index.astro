@@ -1,0 +1,37 @@
+---
+import { Picture } from "astro:assets";
+import ImgHero from "../../assets/img/hero_4scene.webp";
+import CardScenes from "../../components/CardScenes.astro";
+
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/Hero.astro";
+import { allScenes } from "../../../backend/backend.mjs";
+
+const scenes = await allScenes();
+---
+
+<Layout title="Scènes">
+  <Hero showButton={false} title="4 scènes">
+    <Picture
+      slot="image"
+      src={ImgHero}
+      alt="guitarre"
+      layout="full-width"
+      pictureAttributes={{ class: "object-cover " }}
+    />
+  </Hero>
+
+  <p class="mx-80 my-20">
+    Découvrez les différentes scènes du festival : des espaces en plein air,
+    ouverts et accessibles à tous. Conçues pour accueillir un large public,
+    chaque scène offre une atmosphère unique et une programmation pensée pour
+    faire vivre l’expérience du festival au plus grand nombre.
+</p>
+
+    <div
+      class="grid grid-cols-1 lg:grid-cols-2 gap-4 py-10 px-8 mx-40"
+    >
+      {scenes.map((scene) => <CardScenes scene={scene} />)}
+    </div>
+  </p>
+</Layout>
