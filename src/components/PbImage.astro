@@ -13,7 +13,7 @@ const imageURL = await getImageUrl(record, recordImage);
       src={imageURL}
       alt={record.nom_scene || record.nom_artiste || "Image"}
       inferSize={true}
-      class="w-full object-contain"
+      class="w-full h-full object-cover object-center block"
     />
   )
 }

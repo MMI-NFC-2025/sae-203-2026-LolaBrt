@@ -3,6 +3,9 @@ import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
 import { oneArtisteID } from "../../../backend/backend.mjs";
 import PbImage from "../../components/PbImage.astro";
+import SpotifyIcon from "../../assets/img/socialsb_spotify.svg";
+import XIcon from "../../assets/img/socialsb_x.svg";
+import FbIcon from "../../assets/img/socialsb_fb.svg";
 
 const id = Astro.params.id;
 const artiste = await oneArtisteID(id);
@@ -10,14 +13,21 @@ if (!artiste) {
   console.error(`Artiste with id ${id} not found`);
   return Astro.redirect("/artistes");
 }
+const dateLabel = artiste.show_artiste
+  ? new Intl.DateTimeFormat("fr-FR", {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      timeZone: "UTC",
+    }).format(new Date(artiste.show_artiste))
+  : "";
 ---
 
 <Layout
   title={artiste.nom_artiste}
   description={`Découvrez ${artiste.nom_artiste}.`}
 >
-  <Hero showButton={false}
-    >
+  <Hero showButton={false}>
     <PbImage
       slot="image"
       record={artiste}
@@ -26,4 +36,50 @@ if (!artiste) {
       pictureAttributes={{ class: "object-cover " }}
     />
   </Hero>
+  <section class="bg-prim300 grille py-4">
+    <div class="flex flex-col gap-1 col-start-5 col-span-3">
+    <h3 class="col-span-3 col-start-4">{artiste.nom_artiste}</h3>
+    <p class=" col-start-4 font-bold">
+      {dateLabel} | {artiste.expand?.performe?.nom_scene}
+    </p>
+  </div>
+    <ul>
+      <li>
+        <a
+          href={artiste.spotify_artiste}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <SpotifyIcon class="mb-2" />
+        </a>
+      </li>
+      <li>
+        <a href={artiste.x_artiste} target="_blank" rel="noopener noreferrer">
+          <XIcon class="mb-2" />
+        </a>
+      </li>
+      <li>
+        <a
+          href={artiste.facebook_artiste}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FbIcon />
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <p>{artiste.desc_artiste}</p>
+
+  <h3 class="py-8 mx-20">Galerie</h3>
+  <div class="grille gap-2 md:grid-cols-3 mx-10 py-7">
+    {
+      artiste.gallery_artiste.map((image) => (
+        <div class="aspect-4/3 overflow-hidden rounded-lg bg-prim200 mx-8">
+          <PbImage record={artiste} recordImage={image} />
+        </div>
+      ))
+    }
+  </div>
 </Layout>

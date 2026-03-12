@@ -18,8 +18,10 @@ export async function allArtists() {
 }
 
 export async function oneArtisteID(id) { 
-    const records = await pb.collection('ARTISTE').getOne(id); 
-    return records; 
+  const records = await pb.collection('ARTISTE').getOne(id, {
+    expand: "performe"
+  });
+  return records;
 }
 
 export async function allScenes() { 
